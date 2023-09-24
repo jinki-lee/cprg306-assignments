@@ -1,8 +1,10 @@
 import React from "react";
 import Link from "next/link"; // Import the Link component from Next.js
-import StudentInfo from "app/week2/StudentInfo"; // Update the import path as needed
+import StudentInfo from "./week2/StudentInfo"; // Update the import path as needed
 
-export default function Page() {
+import 'flowbite';
+
+export default function Home() {
   return (
     <div>
       <MyHeading />
