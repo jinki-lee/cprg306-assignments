@@ -1,14 +1,14 @@
 import React from "react";
 import Link from "next/link"; // Import the Link component from Next.js
 
-import StudentInfo from "app/week2/StudentInfo";
+import ItemList from "./item-list";
 
 export default function Page() {
   return (
-    <div>
-      <h1>My Shopping List</h1>
-      <StudentInfo />
+    <main>
+      <h1>WEEK 3</h1>
       <Link href="/">Go to home</Link>
-    </div>
+      <ItemList />
+    </main>
   );
 }
