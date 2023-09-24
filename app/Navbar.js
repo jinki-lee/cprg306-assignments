@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="#" className="flex items-center">
+        <a href="/" className="flex items-center">
           <img
             src="https://flowbite.com/docs/images/logo.svg"
             className="h-8 mr-3"
@@ -85,7 +85,7 @@ function Navbar() {
                 >
                   <li>
                     <a
-                      href="#"
+                      href="/week2"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       Week 2
@@ -93,7 +93,7 @@ function Navbar() {
                   </li>
                   <li>
                     <a
-                      href="#"
+                      href="/week3"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       Week 3
@@ -101,16 +101,6 @@ function Navbar() {
                   </li>
 
                 </ul>
-{/* 
-                <div className="py-1">
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-                  >
-                    Sign out
-                  </a>
-                </div> */}
-
               </div>
             </li>
             {/* Github */}

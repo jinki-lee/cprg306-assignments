@@ -6,8 +6,6 @@ import ItemList from "./item-list";
 export default function Page() {
   return (
     <main>
-      <h1>WEEK 3</h1>
-      <Link href="/">Go to home</Link>
       <ItemList />
     </main>
   );

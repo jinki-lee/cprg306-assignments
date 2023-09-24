@@ -6,20 +6,9 @@ import 'flowbite';
 
 export default function Home() {
   return (
-    <div>
-      <MyHeading />
-      <br></br>
-      <StudentInfo />
-      <p>
-        <Link href="/week2">Go to Week 2</Link>
-      </p>
-      <p>
-        <Link href="/week3">Go to Week 3</Link>
-      </p>
-    </div>
+<section className="bg-white dark:bg-gray-900">
+<StudentInfo />
+</section>
   );
 }
 
-function MyHeading() {
-  return <h1>CPRG 306: Web Development 2 - Assignments</h1>;
-}
