@@ -3,7 +3,7 @@ import '../styles/globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import "flowbite";
-import Navbar from "app/components/Navbar"; // Ignore this bug for now
+import Navbar from "./Navbar"; // Ignore this bug for now
 
 
 const inter = Inter({ subsets: ['latin'] })
