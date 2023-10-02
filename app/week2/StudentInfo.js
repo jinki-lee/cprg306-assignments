@@ -6,19 +6,20 @@ const StudentInfo = () => {
   const githubRepoUrl = "https://github.com/jinki-lee"; // Replace with your GitHub repository URL
   const linkedInUrl = "https://www.linkedin.com/in/jinkilee/";
   const vercelAppUrl = "https://cprg306-assignments-coral.vercel.app/";
+  const porfolioUrl = "https://jinkilee.ca";
 
   return (
     <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
-      {/* <a
-        href="#"
+      <a
+        href={porfolioUrl}
         className="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
         role="alert"
       >
-        <span className="text-xs bg-primary-600 rounded-full text-white px-4 py-1.5 mr-3">
+        <span className="text-xs bg-red-600 rounded-full text-white px-4 py-1.5 mr-3">
           New
         </span>{" "}
         <span className="text-sm font-medium">
-          Flowbite is out! See what's new
+          My Portfolio
         </span>
         <svg
           className="ml-2 w-5 h-5"
@@ -32,7 +33,7 @@ const StudentInfo = () => {
             clip-rule="evenodd"
           ></path>
         </svg>
-      </a> */}
+      </a>
       <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
         {yourName}
       </h1>
