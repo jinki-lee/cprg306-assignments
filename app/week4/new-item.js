@@ -10,35 +10,34 @@ export default function NewItem() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-   
+
     // Create item object
     const item = {
       name: name,
       quantity: quantity,
       category: category,
     };
-  
+
     // Log item object to the console
     console.log(item);
-  
+
     // Store item details in state
     setAddedItem(item);
-  
+
     // Display the alert
     setShowAlert(true);
-  
+
     // Reset state variables to their initial values
     setName("");
     setQuantity("1");
     setCategory("Produce");
-  
+
     // Set a timer to hide the alert after 3000 milliseconds (3 seconds)
     setTimeout(() => {
       setShowAlert(false);
-    }, 3000);
+    }, 5000);
   };
-  
-  
+
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
@@ -46,7 +45,6 @@ export default function NewItem() {
   const handleQuantityChange = (event) => {
     setQuantity(event.target.value);
   };
-
 
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
@@ -72,7 +70,13 @@ export default function NewItem() {
                   Product Added
                 </span>
                 {addedItem && (
-                  <div className="mb-2 text-sm font-normal">{`Name: ${addedItem.name}, Quantity: ${addedItem.quantity}, Category: ${addedItem.category}`}</div>
+                  <div className="mb-2 text-sm font-normal">
+                    {`NAME: ${addedItem.name}`}
+                    <br />
+                    {`QUANTITY: ${addedItem.quantity}`}
+                    <br />
+                    {`CATEGORY: ${addedItem.category}`}
+                  </div>
                 )}
               </div>
               <button
@@ -135,14 +139,14 @@ export default function NewItem() {
                 Quantity
               </label>
               <input
-  type="number"
-  id="quantity"
-  name="quantity"
-  min="1"
-  max="99"
-  value={quantity}
-  onChange={handleQuantityChange}
-  required
+                type="number"
+                id="quantity"
+                name="quantity"
+                min="1"
+                max="99"
+                value={quantity}
+                onChange={handleQuantityChange}
+                required
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               />
             </div>
