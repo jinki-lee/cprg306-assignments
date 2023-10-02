@@ -5,8 +5,18 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/flowbite/**/*.js",
   ],
+  // enable dark mode via class strategy
+  darkMode: 'class',
+
   theme: {
-    extend: {},
+    extend: {
+      // extend base Tailwind CSS utility classes
+    }
   },
-  plugins: [require("flowbite/plugin")],
-};
+  plugins: [
+    // include Flowbite as a plugin in your Tailwind CSS project
+    require("flowbite/plugin")
+  ]
+  
+}
+

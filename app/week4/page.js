@@ -1,11 +1,11 @@
 import React from "react";
 
-import ItemList from "./item-list";
+import NewItem from "./new-item.js";
 
 export default function Page() {
   return (
     <main>
-      <ItemList />
+        <NewItem />
     </main>
   );
 }
