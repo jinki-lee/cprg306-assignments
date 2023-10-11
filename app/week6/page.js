@@ -17,7 +17,7 @@ export default function Page() {
     <main>
       {/* Pass the handleAddItem event handler to NewItem */}
       <NewItem onAddItem={handleAddItem} />
-      
+
       {/* Pass the items state to ItemList */}
       <ItemList items={items} />
     </main>

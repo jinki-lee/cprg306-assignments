@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import Heading from "./heading";
 import ItemCard from "./item-card";
@@ -7,31 +8,26 @@ export default function ItemList({ items }) {
   const [itemNameFilter, setItemNameFilter] = useState("");
   const [isGrouped, setIsGrouped] = useState(false);
 
-  // Create a copy of items to avoid mutation
   let filteredItems = [...items];
 
-  // Filter the items based on the category if the filter isn't "All"
   if (categoryFilter !== "All") {
     filteredItems = filteredItems.filter(
       (item) => item.category === categoryFilter
     );
   }
 
-  // Filter the items based on the name input
   if (itemNameFilter) {
     filteredItems = filteredItems.filter((item) =>
       item.name.toLowerCase().includes(itemNameFilter.toLowerCase())
     );
   }
 
-  // Extract unique categories for the dropdown list
   let categories = [...new Set(items.map((item) => item.category))].sort();
 
   return (
     <>
-      <div className="flex space-x-4 items-center">
-        {/* Category filter */}
-        <div className="flex-grow">
+      <div className="mx-4 sm:mx-0 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 items-center">
+        <div className="flex-grow sm:w-1/3 w-full">
           <label htmlFor="category" className="self-center">
             Filter by category:
           </label>
@@ -39,7 +35,7 @@ export default function ItemList({ items }) {
             id="category"
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-m rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
             <option value="All">All</option>
             {categories.map((category) => (
@@ -50,8 +46,7 @@ export default function ItemList({ items }) {
           </select>
         </div>
 
-        {/* Item name filter */}
-        <div className="flex-grow">
+        <div className="flex-grow sm:w-1/3 w-full">
           <label htmlFor="itemName" className="self-center">
             Filter by item name:
           </label>
@@ -61,12 +56,11 @@ export default function ItemList({ items }) {
             value={itemNameFilter}
             onChange={(e) => setItemNameFilter(e.target.value)}
             placeholder="Enter item name..."
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-m rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
 
-        {/* Toggle Button */}
-        <div className="flex-grow">
+        <div className="flex-grow sm:w-1/3 w-full">
           <label className="relative inline-flex items-center cursor-pointer w-full">
             <input
               type="checkbox"
@@ -83,6 +77,7 @@ export default function ItemList({ items }) {
 
       <Heading title="Shopping List" />
 
+      <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-200">
         <thead>
           <tr>
@@ -127,7 +122,7 @@ export default function ItemList({ items }) {
                     ))}
                 </React.Fragment>
               ))
-          ) : filteredItems.length === 0 ? ( // Ensure this line is not empty
+          ) : filteredItems.length === 0 ? (
             <tr>
               <td colSpan="4" className="text-center py-4">
                 No items found.
@@ -140,6 +135,7 @@ export default function ItemList({ items }) {
           )}
         </tbody>
       </table>
+      </div>
     </>
   );
 }
