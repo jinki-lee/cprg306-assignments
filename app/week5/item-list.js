@@ -8,6 +8,7 @@ import itemsData from "./items.json";
 export default function ItemList() {
   const [categoryFilter, setCategoryFilter] = useState("All");
   const [itemNameFilter, setItemNameFilter] = useState("");
+  const [isGrouped, setIsGrouped] = useState(false); //Extra Challenge - Add a button that groups the lists by category
 
   // Filter the items based on the category if the filter isn't "All"
   let filteredItems = itemsData;
@@ -30,40 +31,60 @@ export default function ItemList() {
 
   return (
     <>
-  <div className="flex space-x-4">
-
-        {/* ...[Filtering UI - Select Input] */}
-        <label htmlFor="category" className="self-center">Filter by category:</label>
-
-        <select
-        id="category"
-        value={categoryFilter}
-        onChange={(e) => setCategoryFilter(e.target.value)}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-m rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+<div className="flex space-x-4 items-center">
+  {/* Category filter */}
+  <div className="flex-grow">
+    <label htmlFor="category" className="self-center">
+      Filter by category:
+    </label>
+    <select
+      id="category"
+      value={categoryFilter}
+      onChange={(e) => setCategoryFilter(e.target.value)}
+      className="bg-gray-50 border border-gray-300 text-gray-900 text-m rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
     >
-          <option value="All">All</option>
+      <option value="All">All</option>
+      {categories.map((category) => (
+        <option value={category} key={category}>
+          {category}
+        </option>
+      ))}
+    </select>
+  </div>
 
-          {categories.map((category) => (
-            <option value={category} key={category}>
-              {category}
-            </option>
-          ))}
-        </select>
-
-        {/* ...[Filtering UI - Search Text] */}
-        <label htmlFor="itemName"  className="self-center">Filter by item name:</label>
-
-        <input 
-        id="itemName" 
-        type="text" 
-        value={itemNameFilter}
-        onChange={(e) => setItemNameFilter(e.target.value)}
-        placeholder="Enter item name..."
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-m rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+  {/* Item name filter */}
+  <div className="flex-grow">
+    <label htmlFor="itemName" className="self-center">
+      Filter by item name:
+    </label>
+    <input
+      id="itemName"
+      type="text"
+      value={itemNameFilter}
+      onChange={(e) => setItemNameFilter(e.target.value)}
+      placeholder="Enter item name..."
+      className="bg-gray-50 border border-gray-300 text-gray-900 text-m rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
     />
+  </div>
+
+  {/* Toggle Button */}
+  <div className="flex-grow">
+    <label className="relative inline-flex items-center cursor-pointer w-full">
+      <input
+        type="checkbox"
+        className="sr-only peer"
+        onChange={() => setIsGrouped(!isGrouped)}
+      />
+      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+      <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+        Group by Category
+      </span>
+    </label>
+  </div>
+</div>
 
 
-      </div>
+
 
       <Heading title="Shopping List" />
 
@@ -85,16 +106,43 @@ export default function ItemList() {
           </tr>
         </thead>
         <tbody>
-          {filteredItems.length === 0 && (
+          {isGrouped ? (
+            Object.entries(
+              filteredItems.reduce((acc, item) => {
+                acc[item.category] = acc[item.category] || [];
+                acc[item.category].push(item);
+                return acc;
+              }, {})
+            )
+              .sort(([aKey], [bKey]) => aKey.localeCompare(bKey))
+              .map(([category, items]) => (
+                <React.Fragment key={category}>
+                  <tr>
+                    <td
+                      colSpan="4"
+                      className="capitalize text-xl font-bold bg-gray-200"
+                    >
+                      {category}
+                    </td>
+                  </tr>
+                  {items
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                    .map((item) => (
+                      <ItemCard item={item} key={item.name} />
+                    ))}
+                </React.Fragment>
+              ))
+          ) : filteredItems.length === 0 ? (
             <tr>
               <td colSpan="4" className="text-center py-4">
                 No items found.
               </td>
             </tr>
+          ) : (
+            filteredItems.map((item) => (
+              <ItemCard item={item} key={item.name} />
+            ))
           )}
-          {filteredItems.map((item) => (
-            <ItemCard item={item} key={item.name} />
-          ))}
         </tbody>
       </table>
     </>
