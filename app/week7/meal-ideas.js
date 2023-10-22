@@ -1,7 +1,3 @@
-// meal-ideas.js
-
-// "use client" directive
-// (Note: The "use client" directive is not standard in React, so I'm omitting it. If you have a specific system or framework that requires it, please add it as necessary.)
 
 import React, { useState, useEffect } from "react";
 
@@ -47,6 +43,7 @@ function MealIdeas({ ingredient }) {
     getMealIdeas(ingredient);
   }, [ingredient]);
 
+//   View Recipe Modal - Pop-up
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
@@ -115,6 +112,7 @@ function MealIdeas({ ingredient }) {
         </div>
       </div>
 
+            
       {selectedMeal && (
         <div
           id="mealModal"
