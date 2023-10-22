@@ -132,6 +132,14 @@ function Navbar() {
                       Week 6
                     </a>
                   </li>
+                  <li>
+                    <a
+                      href="/week7"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Week 7
+                    </a>
+                  </li>
                 </ul>
               </div>
             </li>
