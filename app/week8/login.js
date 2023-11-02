@@ -1,8 +1,5 @@
 import React from 'react';
 import { useUserAuth } from './_utils/auth-context';
-import Lottie from 'lottie-react';
-import animationData from './lottie-animation.json'; // Make sure this path is correct
-
 
 const Login = () => {
   const { gitHubSignIn } = useUserAuth();
@@ -32,19 +29,10 @@ const Login = () => {
             background-color: #14b8a6;
             color: white;
           }
-          .animation-container {
-            width: 150px; /* Set the width as desired */
-            height: 150px; /* Set the height as desired */
-            margin: 0 auto; /* Centers the animation */
-          }
         `}
       </style>
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="mx-auto max-w-screen-sm text-center">
-          {/* Lottie animation */}
-          <div className="animation-container mb-4">
-            <Lottie animationData={animationData} loop={true} />
-          </div>
           <p className="mb-4 text-3xl tracking-tight font-bold text-teal md:text-4xl">
             Sign In
           </p>
